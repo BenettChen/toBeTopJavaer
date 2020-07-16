@@ -27,8 +27,8 @@ public class NonTjfromServie{
 		List<String> nonTjfromRequests = FileUtils.getFileLines( "/Users/benettchen/Desktop/tjfrom/nonTjfromRequest.log" );
 		Set<String> nonTjfromReuqestSet = nonTjfromRequests.stream().map( request -> {
 			NonTjfromReuqest nonTjfromReuqest = SeriUtils.readValue( request, NonTjfromReuqest.class );
-			String referer = nonTjfromReuqest.getReferer();
-			nonTjfromReuqest.setReferer( replace( referer ) + "\n" );
+			String secondaryReferer = nonTjfromReuqest.getSecondaryReferer();
+			nonTjfromReuqest.setSecondaryReferer( replace( secondaryReferer ) + "\n" );
 			return nonTjfromReuqest.getSecondaryReferer();
 		} ).collect( Collectors.toSet() );
 		FileUtils.clearInfoForFile( writeFileName );

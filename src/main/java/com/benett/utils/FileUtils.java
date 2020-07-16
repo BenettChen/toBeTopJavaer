@@ -1,6 +1,5 @@
 package com.benett.utils;
 
-import com.benett.company.NonTjfromReuqest;
 import com.google.common.collect.Lists;
 
 import java.io.BufferedReader;
@@ -29,7 +28,7 @@ public class FileUtils{
 		File file = new File( filePath );
 		if( file.isFile() && file.exists() ){
 			try{
-				InputStreamReader inputStreamReader = new InputStreamReader( new FileInputStream( file ), "utf-8" );
+				InputStreamReader inputStreamReader = new InputStreamReader( new FileInputStream( file ), StandardCharsets.UTF_8 );
 				BufferedReader bufferReader = new BufferedReader( inputStreamReader );
 				String lineStr;
 				while( ( lineStr = bufferReader.readLine() ) != null ){
@@ -54,6 +53,7 @@ public class FileUtils{
 		BufferedWriter out = null;
 		OutputStreamWriter osw = null;
 		File file;
+		creatDirFile(filePath);
 		try{
 			file = new File( filePath );
 			osw = new OutputStreamWriter( new FileOutputStream( file, true ), StandardCharsets.UTF_8 );
@@ -78,6 +78,15 @@ public class FileUtils{
 			catch( IOException e ){
 				e.printStackTrace();
 			}
+		}
+	}
+
+	private static void creatDirFile( String filePath ){
+		int i = filePath.lastIndexOf( "/" );
+		String dirFile = filePath.substring( 0, i );
+		File file = new File(dirFile);
+		if(!file.exists()){
+			file.mkdirs();
 		}
 	}
 
