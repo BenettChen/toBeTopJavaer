@@ -31,7 +31,7 @@ public class SeriUtils {
         return result;
     }
 
-    public static <T> T readValue(String src, Class<T> clazz) throws Exception {
+    public static <T> T readValue(String src, Class<T> clazz) {
         T result = null;
         try {
             result = mapper.readValue(src, clazz);

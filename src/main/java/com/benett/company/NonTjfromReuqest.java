@@ -11,19 +11,20 @@ import java.util.Objects;
 public class NonTjfromReuqest implements Serializable {
   private static final long serialVersionUID = -6601903208557464574L;
 
-	private Integer bizId;
+	private String bizId;
 	private String referer;
+	private String secondaryReferer;
 	private Long infoId;
 	private Long userId;
 	private String os;
 	private String version;
 
-	public Integer getBizId(){
+	public String getBizId(){
 
 		return bizId;
 	}
 
-	public void setBizId( Integer bizId ){
+	public void setBizId( String bizId ){
 
 		this.bizId = bizId;
 	}
@@ -78,22 +79,33 @@ public class NonTjfromReuqest implements Serializable {
 		this.version = version;
 	}
 
+	public String getSecondaryReferer(){
+
+		return secondaryReferer;
+	}
+
+	public void setSecondaryReferer( String secondaryReferer ){
+
+		this.secondaryReferer = secondaryReferer;
+	}
+
 	@Override
 	public String toString(){
 
-		return "NonTjfromReuqest{" + "bizId=" + bizId + ", referer='" + referer + '\'' + ", infoId=" + infoId + ", userId=" + userId + ", os='" + os + '\'' + ", version='" + version + '\'' + '}' +"\n";
+		return "NonTjfromReuqest{" + "bizId='" + bizId + '\'' + ", referer='" + referer + '\'' + ", secondaryReferer='" + secondaryReferer + '\'' + ", infoId=" + infoId + ", userId=" + userId + ", os='" + os + '\'' + ", version='" + version + '\'' + '}' +"\n";
 	}
 
 	@Override
 	public boolean equals( Object o ){
 
 		NonTjfromReuqest that = ( NonTjfromReuqest )o;
-		return Objects.equals( bizId, that.bizId ) && Objects.equals( referer, that.referer );
+		return Objects.equals( bizId, that.bizId ) && Objects.equals( referer, that.referer ) && Objects.equals( secondaryReferer, that.secondaryReferer );
 	}
 
 	@Override
 	public int hashCode(){
 
-		return Objects.hash( bizId, referer );
+		return Objects.hash( bizId, referer, secondaryReferer );
+
 	}
 }
