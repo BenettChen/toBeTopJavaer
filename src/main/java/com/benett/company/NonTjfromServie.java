@@ -16,6 +16,26 @@ public class NonTjfromServie{
 
 	public static void main( String[] args ){
 
+		NonTjfromServie nonTjfromServie = new NonTjfromServie();
+//		nonTjfromServie.dealWithNonTjfromRequest();
+		nonTjfromServie.getSecondaryReferer();
+
+	}
+
+	private void getSecondaryReferer() {
+		String writeFileName = "/Users/benettchen/Desktop/diffTjfrom/secondaryReferer.txt";
+		List<String> nonTjfromRequests = FileUtils.getFileLines( "/Users/benettchen/Desktop/tjfrom/nonTjfromRequest.log" );
+		Set<String> nonTjfromReuqestSet = nonTjfromRequests.stream().map( request -> {
+			NonTjfromReuqest nonTjfromReuqest = SeriUtils.readValue( request, NonTjfromReuqest.class );
+			String referer = nonTjfromReuqest.getReferer();
+			nonTjfromReuqest.setReferer( replace( referer ) + "\n" );
+			return nonTjfromReuqest.getSecondaryReferer();
+		} ).collect( Collectors.toSet() );
+		FileUtils.clearInfoForFile( writeFileName );
+		FileUtils.write( writeFileName, nonTjfromReuqestSet );
+	}
+
+	private void dealWithNonTjfromRequest() {
 		List<String> nonTjfromRequests = FileUtils.getFileLines( "/Users/benettchen/Desktop/tjfrom/nonTjfromRequest.log" );
 		Set<NonTjfromReuqest> nonTjfromReuqestSet = nonTjfromRequests.stream().map( request -> {
 			NonTjfromReuqest nonTjfromReuqest = SeriUtils.readValue( request, NonTjfromReuqest.class );
@@ -33,7 +53,6 @@ public class NonTjfromServie{
 
 		//		String replace = replace( "https://xm.58.com/zpwentiyingshi/41602443252738x.shtml?PGTID=0d000000-0000-0492-ca5d-eea76794c634&ClickID=5" );
 		//		System.out.println(replace);
-
 	}
 
 	public static String replace( String request ){
