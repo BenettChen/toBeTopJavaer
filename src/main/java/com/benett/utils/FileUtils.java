@@ -53,7 +53,7 @@ public class FileUtils{
 		BufferedWriter out = null;
 		OutputStreamWriter osw = null;
 		File file;
-		creatDirFile(filePath);
+		creatDirFile( filePath );
 		try{
 			file = new File( filePath );
 			osw = new OutputStreamWriter( new FileOutputStream( file, true ), StandardCharsets.UTF_8 );
@@ -82,26 +82,36 @@ public class FileUtils{
 	}
 
 	private static void creatDirFile( String filePath ){
+
 		int i = filePath.lastIndexOf( "/" );
 		String dirFile = filePath.substring( 0, i );
-		File file = new File(dirFile);
-		if(!file.exists()){
+		File file = new File( dirFile );
+		if( !file.exists() ){
 			file.mkdirs();
 		}
 	}
 
-	public static void clearInfoForFile(String fileName) {
-		File file =new File(fileName);
-		try {
-			if(!file.exists()) {
+	public static void clearInfoForFile( String fileName ){
+
+		File file = new File( fileName );
+		try{
+			if( !file.exists() ){
 				file.createNewFile();
 			}
-			FileWriter fileWriter =new FileWriter(file);
-			fileWriter.write("");
+			FileWriter fileWriter = new FileWriter( file );
+			fileWriter.write( "" );
 			fileWriter.flush();
 			fileWriter.close();
-		} catch (IOException e) {
+		}
+		catch( IOException e ){
 			e.printStackTrace();
+		}
+	}
+
+	public static void deleteFile( String fileName ){
+		File file = new File( fileName );
+		if( file.isFile() ){
+			file.delete();
 		}
 	}
 
