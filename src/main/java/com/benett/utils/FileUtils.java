@@ -1,6 +1,7 @@
 package com.benett.utils;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -32,7 +33,7 @@ public class FileUtils{
 				BufferedReader bufferReader = new BufferedReader( inputStreamReader );
 				String lineStr;
 				while( ( lineStr = bufferReader.readLine() ) != null ){
-					contents.add( lineStr );
+					contents.add( lineStr + "\n" );
 				}
 				bufferReader.close();
 				inputStreamReader.close();
@@ -113,6 +114,17 @@ public class FileUtils{
 		if( file.isFile() ){
 			file.delete();
 		}
+	}
+
+	public static  void appendFileContent(List<String> sourceFilePaths, String targetFilePath) {
+
+		Set<String> contents = Sets.newHashSet();
+		for( String filePath : sourceFilePaths ) {
+			List<String> fileLines = getFileLines( filePath );
+			contents.addAll( fileLines );
+		}
+		deleteFile(targetFilePath);
+		write(targetFilePath, contents);
 	}
 
 }

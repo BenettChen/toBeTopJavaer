@@ -3,6 +3,7 @@ package com.benett.company;
 import com.benett.utils.FileUtils;
 import com.benett.utils.SeriUtils;
 import com.benett.utils.URLUtils;
+import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +29,12 @@ public class NonTjfromServie{
 		NonTjfromServie nonTjfromServie = new NonTjfromServie();
 		//		nonTjfromServie.dealWithNonTjfromRequest();
 		nonTjfromServie.getSecondaryReferer();
+//		String str = "https://m.baidu.com/";
+//		System.out.println(str.length());
 	}
 
 	private void getSecondaryReferer(){
-
+		appendFiles();
 		String writeFileName = "/Users/benettchen/Desktop/diffTjfrom/secondaryReferer.txt";
 		List<String> nonTjfromRequests = FileUtils.getFileLines( "/Users/benettchen/Desktop/tjfrom/nonTjfromRequest.log" );
 		Set<NonTjfromReuqest> nonTjfromReuqestSet = nonTjfromRequests.stream().map( request -> {
@@ -45,6 +48,14 @@ public class NonTjfromServie{
 		FileUtils.deleteFile( writeFileName );
 		FileUtils.write( writeFileName, secondaryRefererSet );
 		System.out.println(secondaryRefererSet.size());
+	}
+
+	private static void appendFiles() {
+		String file1 = "/Users/benettchen/Desktop/tjfrom/nonTjfromRequest0.log";
+		String file2 = "/Users/benettchen/Desktop/tjfrom/nonTjfromRequest1.log";
+		String targetFilePath = "/Users/benettchen/Desktop/tjfrom/nonTjfromRequest.log";
+		List<String> files = Lists.newArrayList( file1, file2 );
+		FileUtils.appendFileContent( files, targetFilePath );
 	}
 
 	private void dealWithNonTjfromRequest(){
