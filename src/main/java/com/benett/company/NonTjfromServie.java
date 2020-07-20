@@ -29,8 +29,8 @@ public class NonTjfromServie{
 		NonTjfromServie nonTjfromServie = new NonTjfromServie();
 		//		nonTjfromServie.dealWithNonTjfromRequest();
 		nonTjfromServie.getSecondaryReferer();
-//		String str = "https://m.baidu.com/";
-//		System.out.println(str.length());
+		String str = "https://bd.58.com/zpwuliucangchu/34777821137983x.shtml?psid=134555811209056360930990616&entinfo=34777821137983_p&ytdzwdetaildj=0&finalCp=fin/";
+		System.out.println(str.length());
 	}
 
 	private void getSecondaryReferer(){
@@ -53,8 +53,11 @@ public class NonTjfromServie{
 	private static void appendFiles() {
 		String file1 = "/Users/benettchen/Desktop/tjfrom/nonTjfromRequest0.log";
 		String file2 = "/Users/benettchen/Desktop/tjfrom/nonTjfromRequest1.log";
+		String file3 = "/Users/benettchen/Desktop/tjfrom/nonTjfromRequest2.log";
+		String file4 = "/Users/benettchen/Desktop/tjfrom/nonTjfromRequest3.log";
+		String file5 = "/Users/benettchen/Desktop/tjfrom/nonTjfromRequest4.log";
 		String targetFilePath = "/Users/benettchen/Desktop/tjfrom/nonTjfromRequest.log";
-		List<String> files = Lists.newArrayList( file1, file2 );
+		List<String> files = Lists.newArrayList( file1, file2, file3, file4, file5 );
 		FileUtils.appendFileContent( files, targetFilePath );
 	}
 

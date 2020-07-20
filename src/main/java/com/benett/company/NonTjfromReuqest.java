@@ -142,8 +142,11 @@ public class NonTjfromReuqest implements Serializable{
 				return domain;
 			}
 			//过滤不同城市主页面
-			if( url.contains( "x.shtml" ) &&  url.length() <= 140) {
+			if( url.contains( "x.shtml" ) &&  url.length() <= 142) {
 				return "PGTID";
+			}
+			if( url.contains( "x.shtml" ) && url.contains( "m.58.com" ) ) {
+				return "m.58.com,xshtml";
 			}
 			if( url.contains( "passport" ) && url.contains( "path" ) ) {
 				return "passport,path";

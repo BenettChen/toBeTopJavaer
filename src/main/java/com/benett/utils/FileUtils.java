@@ -117,12 +117,14 @@ public class FileUtils{
 	}
 
 	public static  void appendFileContent(List<String> sourceFilePaths, String targetFilePath) {
-
+		int totalLine = 0;
 		Set<String> contents = Sets.newHashSet();
 		for( String filePath : sourceFilePaths ) {
 			List<String> fileLines = getFileLines( filePath );
+			totalLine = totalLine + fileLines.size();
 			contents.addAll( fileLines );
 		}
+		System.out.println("total reuquest:"+totalLine);
 		deleteFile(targetFilePath);
 		write(targetFilePath, contents);
 	}
